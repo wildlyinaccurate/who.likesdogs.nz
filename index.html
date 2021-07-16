@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Who Likes Dogs?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            body {
+                background: #0b032d;
+                color: #f67e7d;
+                font-family: sans-serif;
+                line-height: 1.2;
+                padding: 4rem;
+                text-align: center;
+            }
+
+            h1 {
+                padding: 4rem;
+            }
+
+            button {
+                background: #843b62;
+                border: none;
+                border-radius: 0.5rem;
+                color: #ffb997;
+                font-size: 2rem;
+                padding: 1rem 4rem;
+            }
+
+            button:hover {
+                background: #621940;
+                cursor: pointer;
+            }
+
+            button:active {
+                transform: translateY(2px);
+                filter: saturate(150%);
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Who Likes Dogs?</h1>
+
+        <button>I like dogs!</button>
+
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+        <script>
+        (function() {
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const button = document.querySelector("button");
+            const { top, height, left, width, } = button.getBoundingClientRect();
+            const x = (left + width / 2) / window.innerWidth;
+            const y = (top + height / 2) / window.innerHeight;
+
+            button.addEventListener("click", (event) => {
+                confetti({
+                    angle: randomInRange(50, 130),
+                    spread: randomInRange(50, 70),
+                    particleCount: randomInRange(50, 100),
+                    origin: { x, y },
+                });
+            });
+        })();
+        </script>
+    </body>
+</html>
